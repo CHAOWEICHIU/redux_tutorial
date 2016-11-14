@@ -8,6 +8,7 @@
 
 
 ```javascript
+// Bank has enviroment and users state -------------
 var Bank = function(balance){
   this.balance = balance
 }
@@ -17,32 +18,41 @@ Bank.prototype.withdraw = function(amount){
   return this.balance
 }
 
-var bank = new Bank(100)
-var withdraw_1 = bank.withdraw(50)
-var withdraw_2 = bank.withdraw(50)
-console.log(withdraw_1); // 50
-console.log(withdraw_2); //  0
-```
-
-
-```javascript
-var FBank = function(balance){
+// Redux Bank ---------------------------------------
+var Redux_Bank = function(balance){
   this.balance = balance
 }
-FBank.prototype.withdraw = function(amount){
-  return new FBank ( this.balance - amount)
+// Instead of mutatting our balance,
+// we create a new instance of Redux_Bank 
+// and pass it to the update balance
+Redux_Bank.prototype.withdraw = function(amount){
+  return new Redux_Bank ( this.balance - amount)
 }
 
-var fBank = new FBank(100)
 
-var fBank_Withdraw_1 = fBank.withdraw(50)
-var fBank_Withdraw_2 = fBank.withdraw(50)
+// Imperitive Style
+var bank 	   = new Bank(100)
+  , withdraw_1 = bank.withdraw(50)
+  , withdraw_2 = bank.withdraw(50)
 
-console.log(fBank_Withdraw_1.balance)
-console.log(fBank_Withdraw_2.balance)
+// Calling withdraw with same arguments
+// return different values
+console.log(withdraw_1); // 50
+console.log(withdraw_2); //  0
 
-var fBank_Withdraw_3 = fBank_Withdraw_1.withdraw(50)
-console.log(fBank_Withdraw_3.balance)
+
+
+// Redux Style
+var redux_bank 			  = new Redux_Bank(100)
+  , redux_bank_withdraw_1 = redux_bank.withdraw(50)
+  , redux_bank_withdraw_2 = redux_bank.withdraw(50)
+
+console.log(redux_bank_withdraw_1.balance); // 50
+console.log(redux_bank_withdraw_2.balance); // 50
+
+var redux_bank_withdraw_3 = redux_bank_withdraw_1.withdraw(50)
+console.log(redux_bank_withdraw_3.balance); // 0
+
 ```
 
 
