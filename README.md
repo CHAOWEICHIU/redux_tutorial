@@ -7,6 +7,36 @@
 
 
 
+
+
+
+> Imperitive Style
+
+```javascript
+var bank 	   = new Bank(100)
+  , withdraw_1 = bank.withdraw(50)
+  , withdraw_2 = bank.withdraw(50)
+console.log(withdraw_1) // 50
+console.log(withdraw_2) //  0
+```
+
+> Redux Style
+```javascript
+var redux_bank 			  = new Redux_Bank(100)
+  , redux_bank_withdraw_1 = redux_bank.withdraw(50)
+  , redux_bank_withdraw_2 = redux_bank.withdraw(50)
+
+console.log(redux_bank_withdraw_1.balance); // 50
+console.log(redux_bank_withdraw_2.balance); // 50
+
+var redux_bank_withdraw_3 = redux_bank_withdraw_1.withdraw(50)
+console.log(redux_bank_withdraw_3)    		//  0
+
+```
+
+
+
+
 ```javascript
 // Bank has enviroment and users state -------------
 var Bank = function(balance){
